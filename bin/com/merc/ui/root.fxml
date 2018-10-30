@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.merc.controller.RootController">
+   <children>
+      <Pane prefHeight="28.0" prefWidth="600.0">
+         <children>
+            <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="598.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="파일">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="등록" onAction="#handleRegister"/>
+                    <MenuItem mnemonicParsing="false" text="삭제" onAction="#handleDelete"/>
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </children>
+      </Pane>
+      <Pane prefHeight="65.0" prefWidth="600.0">
+         <children>
+            <TextField layoutX="107.0" layoutY="3.0" prefHeight="23.0" prefWidth="464.0" />
+            <TextField layoutX="107.0" layoutY="36.0" prefHeight="23.0" prefWidth="143.0" />
+            <ChoiceBox layoutX="258.0" layoutY="36.0" prefHeight="23.0" prefWidth="108.0" />
+            <ChoiceBox layoutX="373.0" layoutY="36.0" prefHeight="23.0" prefWidth="114.0" />
+            <Button layoutX="497.0" layoutY="36.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="74.0" text="검색" />
+            <ImageView fitHeight="58.0" fitWidth="97.0" layoutX="5.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </Pane>
+      <ScrollPane prefHeight="301.0" prefWidth="598.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+        </content>
+      </ScrollPane>
+   </children>
+</FlowPane>
