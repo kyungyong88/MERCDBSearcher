@@ -6,6 +6,9 @@ import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 
+import com.merc.controller.RegisterController;
+import com.merc.controller.RootController;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,7 +29,8 @@ public class RegisterFile {
 			
 
 	 public RegisterFile() throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("register.fxml"));
+	    FXMLLoader loader = new FXMLLoader(getClass().getResource("register.fxml"));
+	    Parent root = loader.load();
 		Scene scene = new Scene(root);
 		Stage subStage = new Stage();
 		subStage.setTitle("µî·Ï");
@@ -34,6 +38,10 @@ public class RegisterFile {
 		subStage.setResizable(false);
 		subStage.initModality(Modality.APPLICATION_MODAL);
 		subStage.show();
+		
+		
+		RegisterController controller = loader.getController();
+		controller.setSubStage(subStage);
 		
 		subStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             public void handle(WindowEvent we) {

@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import com.merc.core.SearchDoc;
 import com.merc.ui.DeleteFile;
+import com.merc.ui.PromptButtonCell;
 import com.merc.ui.RegisterFile;
 
 import javafx.application.Platform;
@@ -73,6 +74,8 @@ SearchDoc searchdoc;
     			search_field.setText("");
     			keyword_field.setText("");
     			initSpinner();	
+    		    category_combo.getSelectionModel().clearSelection();
+    		    category_combo.setButtonCell(new PromptButtonCell<>("카테고리"));
     		}
     	
 			} 

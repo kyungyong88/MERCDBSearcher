@@ -13,6 +13,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.stage.FileChooser.ExtensionFilter;
 
 
@@ -20,11 +21,17 @@ public class DeleteController implements Initializable {
 	@FXML private Label title_label;
 	String fullpath;
 	DeleteDoc deletedoc;
+	private Stage subStage;
 	
 	 @Override
 	 public void initialize(URL location, ResourceBundle resources) {
 	     
 	 }
+	 
+	 public void setSubStage(Stage subStage) {
+		 this.subStage = subStage;
+	 }
+	 
 	 
 	 public void handleFileSelect(ActionEvent e) throws Exception {
 		 
@@ -52,7 +59,7 @@ public class DeleteController implements Initializable {
     			File file = new File(fullpath);
     			file.delete();
     			messageDialog("삭제되었습니다.");
-    			title_label.getScene().getWindow().hide();
+    			subStage.close();
     		}
     		else
     			messageDialog("파일이 없습니다.");

@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.ResourceBundle;
 
 import com.merc.core.CreateDoc;
+import com.merc.ui.PromptButtonCell;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -32,6 +33,7 @@ public class RegisterController implements Initializable {
 	@FXML private ComboBox<String> category_combo;
 	@FXML private Spinner<Integer> year_spinner;
 	String old_fullpath;
+	private Stage subStage;
 
     
  
@@ -40,6 +42,10 @@ public class RegisterController implements Initializable {
 
 	 initSpinner();
      
+ }
+ 
+ public void setSubStage(Stage subStage) {
+	 this.subStage = subStage;
  }
  
  public void handleFileSelect(ActionEvent e) throws Exception {
@@ -59,9 +65,11 @@ public class RegisterController implements Initializable {
  }
  
  public void handleInitialize(ActionEvent e) throws Exception {
-	 title_field.setText("");
+	 title_field.setText(null);
 	 keyword_field.setText("");
 	 initSpinner();
+     category_combo.getSelectionModel().clearSelection();
+     category_combo.setButtonCell(new PromptButtonCell<>("카테고리"));
  	 
  }
  
@@ -87,7 +95,8 @@ public class RegisterController implements Initializable {
 	        new CreateDoc(keyword, category, year, new_Fullpath);
 	        messageDialog("등록되었습니다.");
 	        
-	        title_field.getScene().getWindow().hide();
+	        
+	        subStage.close();
     	}
 		
 		else {
@@ -109,6 +118,7 @@ public class RegisterController implements Initializable {
      year_spinner.setEditable(true);
      SpinnerValueFactory.IntegerSpinnerValueFactory valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1990, current_year, current_year, 1);
      year_spinner.setValueFactory(valueFactory);
+     
  }
  
  
