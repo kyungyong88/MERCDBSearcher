@@ -4,11 +4,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="83.0" prefWidth="486.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="83.0" prefWidth="486.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.merc.controller.DeleteController">
    <children>
-      <Button layoutX="31.0" layoutY="11.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="313.0" text="파일 선택" />
+      <Button layoutX="31.0" layoutY="11.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="313.0" text="파일 선택" onAction="#handleFileSelect" />
       <Label layoutX="31.0" layoutY="46.0" text="제목 :" />
-      <Button layoutX="350.0" layoutY="11.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="114.0" text="삭제" />
-      <Label layoutX="72.0" layoutY="46.0" prefHeight="15.0" prefWidth="269.0" />
+      <Button layoutX="350.0" layoutY="11.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="114.0" text="삭제" onAction="#handleFileDelete"/>
+      <Label layoutX="72.0" layoutY="46.0" prefHeight="15.0" prefWidth="269.0" fx:id="title_label"/>
    </children>
 </Pane>

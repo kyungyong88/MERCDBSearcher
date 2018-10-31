@@ -4,6 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections ?>
 
 <FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.merc.controller.RootController">
    <children>
@@ -23,12 +24,26 @@
       </Pane>
       <Pane prefHeight="65.0" prefWidth="600.0">
          <children>
-            <TextField layoutX="107.0" layoutY="3.0" prefHeight="23.0" prefWidth="464.0" />
-            <TextField layoutX="107.0" layoutY="36.0" prefHeight="23.0" prefWidth="143.0" />
-            <ChoiceBox layoutX="258.0" layoutY="36.0" prefHeight="23.0" prefWidth="108.0" />
-            <ChoiceBox layoutX="373.0" layoutY="36.0" prefHeight="23.0" prefWidth="114.0" />
-            <Button layoutX="497.0" layoutY="36.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="74.0" text="검색" />
-            <ImageView fitHeight="58.0" fitWidth="97.0" layoutX="5.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" />
+            <TextField fx:id="search_field"  layoutX="107.0" layoutY="3.0" prefHeight="23.0" prefWidth="464.0" />
+            <TextField fx:id="keyword_field" layoutX="107.0" layoutY="36.0" prefHeight="23.0" prefWidth="143.0" />
+            <ComboBox fx:id="category_combo" layoutX="258.0" layoutY="36.0" prefHeight="23.0" prefWidth="108.0" promptText="카테고리" >
+		   	  	<items>
+		    		<FXCollections fx:factory="observableArrayList">
+		     			<String fx:value="환경정책"/>
+		     			<String fx:value="토양"/>
+		     			<String fx:value="대기"/>
+		     			<String fx:value="수질"/>
+		     			<String fx:value="기타"/>
+		    		</FXCollections>
+		   		</items>
+   	  		</ComboBox>
+            <Spinner fx:id="year_spinner" layoutX="373.0" layoutY="36.0" prefHeight="23.0" prefWidth="114.0" />
+            <Button layoutX="497.0" layoutY="36.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="74.0" text="검색" onAction="#handleSearch"/>
+            <ImageView fitHeight="58.0" fitWidth="97.0" layoutX="5.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" >
+                  <image>
+        			<Image url="./resources/image/sample.png" />
+      			</image>
+            </ImageView>
          </children>
       </Pane>
       <ScrollPane prefHeight="301.0" prefWidth="598.0">
