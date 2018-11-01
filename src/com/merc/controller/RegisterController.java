@@ -9,7 +9,7 @@ import java.util.Calendar;
 import java.util.ResourceBundle;
 
 import com.merc.core.CreateDoc;
-import com.merc.ui.PromptButtonCell;
+import com.merc.ui.cell.PromptButtonCell;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;

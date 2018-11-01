@@ -13,8 +13,9 @@ import javax.swing.filechooser.FileSystemView;
 
 import com.merc.core.SearchDoc;
 import com.merc.ui.DeleteFile;
-import com.merc.ui.PromptButtonCell;
 import com.merc.ui.RegisterFile;
+import com.merc.ui.cell.AttachmentListCell;
+import com.merc.ui.cell.PromptButtonCell;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -45,11 +46,7 @@ public class RootController implements Initializable {
 @FXML private ListView<String> items_listview;
 
 
-ObservableList<String> data = FXCollections.observableArrayList(
-        "a.msg", "a1.msg", "b.txt", "c.pdf", 
-        "d.html", "e.png", "f.zip",
-        "g.docx", "h.xlsx", "i.pptx");
-
+ObservableList<String> data;
 
 SearchDoc searchdoc;
 
@@ -61,18 +58,7 @@ SearchDoc searchdoc;
 	 search_field.setPromptText("검색할 단어를 입력하세요.");
 	 keyword_field.setPromptText("키워드");
 	 initSpinner();
-	 
-	 items_listview.setItems(data);
-
-	 items_listview.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
-         @Override
-         public ListCell<String> call(ListView<String> list) {
-             return new AttachmentListCell();
-         }
-     });
-
-     
-     
+ 
  }
  
  public void handleRegister(ActionEvent e) throws Exception {
@@ -141,116 +127,25 @@ SearchDoc searchdoc;
  
 	private void button_adder(ArrayList ListA) {
 		
-/*		lower_panel.removeAll();
+		data = FXCollections.observableArrayList();
+		for (Object object : ListA) {
+			String element = (String) object;
+		    data.add(element);
+		    }
 		
-        for(Object object : ListA){ 
-        	String element = (String) object;
-    		JButton button = new JButton(element);
-    		button.setBackground(UIManager.getColor("Button.background"));
-    		lower_panel.add(button);
-    		button.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-            		Desktop d = Desktop.getDesktop();
-            		try {
-    					d.open(new File(element));
-    				} catch (IOException e1) {
-    					// TODO Auto-generated catch block
-    					e1.printStackTrace();
-    				}
-                }
-            });
-        } 
-        
-		
-		lower_panel.validate();
-		lower_panel.repaint();*/
-	}
- 
-	static HashMap<String, Image> mapOfFileExtToSmallIcon = new HashMap<String, Image>();
+		 items_listview.setItems(data);
+
+		 items_listview.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+	        @Override
+	        public ListCell<String> call(ListView<String> list) {
+	            return new AttachmentListCell();
+	        }
+	    });
+		 
+		}
+	
+
 
 	
-	   private static class AttachmentListCell extends ListCell<String> {
-	        @Override
-	        public void updateItem(String item, boolean empty) {
-	            super.updateItem(item, empty);
-	            if (empty) {
-	                setGraphic(null);
-	                setText(null);
-	            } else {
-	                Image fxImage = getFileIcon(item);
-	                ImageView imageView = new ImageView(fxImage);
-	                setGraphic(imageView);
-	                setText(item);
-	            }
-	        }
-	    }
-	   
-	    private static Image getFileIcon(String fname) {
-	        final String ext = getFileExt(fname);
-
-	        Image fileIcon = mapOfFileExtToSmallIcon.get(ext);
-	        if (fileIcon == null) {
-
-	            javax.swing.Icon jswingIcon = null; 
-
-	            File file = new File(fname);
-	            if (file.exists()) {
-	                jswingIcon = getJSwingIconFromFileSystem(file);
-	            }
-	            else {
-	                File tempFile = null;
-	                try {
-	                    tempFile = File.createTempFile("icon", ext);
-	                    jswingIcon = getJSwingIconFromFileSystem(tempFile);
-	                }
-	                catch (IOException ignored) {
-	                    // Cannot create temporary file. 
-	                }
-	                finally {
-	                    if (tempFile != null) tempFile.delete();
-	                }
-	            }
-
-	            if (jswingIcon != null) {
-	                fileIcon = jswingIconToImage(jswingIcon);
-	                mapOfFileExtToSmallIcon.put(ext, fileIcon);
-	            }
-	        }
-
-	        return fileIcon;
-	    }
-	    
-	    private static String getFileExt(String fname) {
-	        String ext = ".";
-	        int p = fname.lastIndexOf('.');
-	        if (p >= 0) {
-	            ext = fname.substring(p);
-	        }
-	        return ext.toLowerCase();
-	    }
-	    
-	    
-	    private static javax.swing.Icon getJSwingIconFromFileSystem(File file) {
-
-	        // Windows {
-	        FileSystemView view = FileSystemView.getFileSystemView();
-	        javax.swing.Icon icon = view.getSystemIcon(file);
-	        // }
-
-	        // OS X {
-	        //final javax.swing.JFileChooser fc = new javax.swing.JFileChooser();
-	        //javax.swing.Icon icon = fc.getUI().getFileView(fc).getIcon(file);
-	        // }
-
-	        return icon;
-	    }
-	    
-	    
-	    private static Image jswingIconToImage(javax.swing.Icon jswingIcon) {
-	        BufferedImage bufferedImage = new BufferedImage(jswingIcon.getIconWidth(), jswingIcon.getIconHeight(),
-	                BufferedImage.TYPE_INT_ARGB);
-	        jswingIcon.paintIcon(null, bufferedImage.getGraphics(), 0, 0);
-	        return SwingFXUtils.toFXImage(bufferedImage, null);
-	    }
+ 
 }

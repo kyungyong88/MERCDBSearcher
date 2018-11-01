@@ -1,4 +1,4 @@
-package com.merc.ui;
+package com.merc.ui.cell;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
