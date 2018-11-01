@@ -10,7 +10,7 @@
    <children>
       <Pane prefHeight="28.0" prefWidth="600.0">
          <children>
-            <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="598.0">
+            <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="600.0">
               <menus>
                 <Menu mnemonicParsing="false" text="파일">
                   <items>
@@ -46,10 +46,8 @@
             </ImageView>
          </children>
       </Pane>
-      <ScrollPane prefHeight="301.0" prefWidth="598.0">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-        </content>
+      <ScrollPane prefHeight="301.0" prefWidth="600.0">
+		<ListView fx:id="items_listview" prefHeight="300.0" prefWidth="600.0" />
       </ScrollPane>
    </children>
 </FlowPane>
