@@ -14,7 +14,7 @@ public class DeleteFile {
 
 	 public DeleteFile() throws Exception {
 		 
-	    FXMLLoader loader = new FXMLLoader(getClass().getResource("delete.fxml"));
+	    FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/delete.fxml"));
 	    Parent root = loader.load();
 	    Scene scene = new Scene(root);
 		Stage subStage = new Stage();
