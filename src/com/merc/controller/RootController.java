@@ -1,15 +1,11 @@
 package com.merc.controller;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.ResourceBundle;
 
-import javax.swing.filechooser.FileSystemView;
 
 import com.merc.core.SearchDoc;
 import com.merc.ui.DeleteFile;
@@ -17,10 +13,8 @@ import com.merc.ui.RegisterFile;
 import com.merc.ui.cell.AttachmentListCell;
 import com.merc.ui.cell.PromptButtonCell;
 
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -30,10 +24,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.util.Callback;
 import javafx.scene.control.Alert.AlertType;
 
@@ -125,7 +116,7 @@ SearchDoc searchdoc;
  }
  
  
-	private void button_adder(ArrayList ListA) {
+	private void button_adder(ArrayList <String> ListA) {
 		
 		data = FXCollections.observableArrayList();
 		for (Object object : ListA) {

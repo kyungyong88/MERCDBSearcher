@@ -17,7 +17,6 @@ import org.apache.lucene.index.CorruptIndexException;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.index.IndexWriterConfig.OpenMode;
-import org.apache.lucene.index.Term;
 import org.apache.lucene.store.FSDirectory;
 
 import com.merc.parser.DocFileParser;
@@ -93,7 +92,7 @@ public class CreateDoc {
             Document doc = new Document();
             if (file.getName().endsWith(".pdf")) {
                 //call the pdf file parser and get the content of pdf file in txt format
-                fileContent = new PdfFileParser().PdfFileParser(file.getAbsolutePath());
+                fileContent = new PdfFileParser().PdfFileContentParser(file.getAbsolutePath());
             }
              
             // 확장자 doc, ppt, xls 에 대한 텍스트 추출 처리

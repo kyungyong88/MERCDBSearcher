@@ -12,7 +12,7 @@ import org.apache.pdfbox.util.PDFTextStripper;
 
 public class PdfFileParser {
  
-    public String PdfFileParser(String pdffilePath) throws FileNotFoundException, IOException
+    public String PdfFileContentParser(String pdffilePath) throws FileNotFoundException, IOException
     {
         String content;
         FileInputStream fi = new FileInputStream(new File(pdffilePath));

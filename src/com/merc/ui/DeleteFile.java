@@ -1,7 +1,6 @@
 package com.merc.ui;
 
 import com.merc.controller.DeleteController;
-import com.merc.controller.RegisterController;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;

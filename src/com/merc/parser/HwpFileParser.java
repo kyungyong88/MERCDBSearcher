@@ -1,8 +1,8 @@
 package com.merc.parser;
 
 
-  import rcc.h2tlib.parser.H2TParser; 
-  import rcc.h2tlib.parser.HWPMeta; 
+import rcc.h2tlib.parser.H2TParser; 
+import rcc.h2tlib.parser.HWPMeta; 
 
 
 public class HwpFileParser { 
@@ -11,7 +11,7 @@ public class HwpFileParser {
 		HWPMeta meta = new HWPMeta(); 
 		H2TParser parser = new H2TParser();	 
 		StringBuilder sb = new StringBuilder();
-		boolean flg = parser.GetText(fileName, meta, sb);
+		parser.GetText(fileName, meta, sb);
 		return sb.toString();
         
 	}

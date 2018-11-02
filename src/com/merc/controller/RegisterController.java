@@ -9,13 +9,12 @@ import java.util.Calendar;
 import java.util.ResourceBundle;
 
 import com.merc.core.CreateDoc;
+import com.merc.core.SearchDoc;
 import com.merc.ui.cell.PromptButtonCell;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ComboBox;
@@ -52,7 +51,7 @@ public class RegisterController implements Initializable {
 	 
 	 FileChooser fileChooser = new FileChooser();
      fileChooser.setTitle("파일을 선택하세요");
-     fileChooser.setInitialDirectory(new File("\\"));
+     fileChooser.setInitialDirectory(new File(".\\"));
      fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Documents", "*.pdf", "*.txt", "*.hwp", "*.doc", "*.docx", "*.xml", "*.html", "*.htm", "*.xls", "*.xlsx", "*.ppt", "*.pptx"));
      File selectedFile = fileChooser.showOpenDialog(null);
      
@@ -90,13 +89,19 @@ public class RegisterController implements Initializable {
 				file.mkdirs();
 				}
 		
-			
-	        Files.copy(new File(old_fullpath).toPath(), new File(new_Fullpath).toPath(), StandardCopyOption.COPY_ATTRIBUTES);
-	        new CreateDoc(keyword, category, year, new_Fullpath);
-	        messageDialog("등록되었습니다.");
-	        
-	        
-	        subStage.close();
+			SearchDoc searchdoc = new SearchDoc();
+			if(searchdoc.isDuplicated(new_Fullpath))
+			{
+		        Files.copy(new File(old_fullpath).toPath(), new File(new_Fullpath).toPath(), StandardCopyOption.COPY_ATTRIBUTES);
+		        new CreateDoc(keyword, category, year, new_Fullpath);
+		        messageDialog("등록되었습니다.");
+		        subStage.close();
+			}
+			else
+			{
+		        messageDialog("중복된 파일이 있습니다.");
+			}
+
     	}
 		
 		else {

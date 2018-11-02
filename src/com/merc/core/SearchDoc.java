@@ -11,7 +11,6 @@ import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.queryparser.classic.QueryParser;
-import org.apache.lucene.search.BooleanClause;
 import org.apache.lucene.search.BooleanClause.Occur;
 import org.apache.lucene.search.BooleanQuery;
 import org.apache.lucene.search.FuzzyQuery;
@@ -20,7 +19,6 @@ import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.search.TopDocs;
-import org.apache.lucene.search.WildcardQuery;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
@@ -29,7 +27,7 @@ public class SearchDoc {
 	 private static String indexDir = "./indexs";
 
 
-    public ArrayList searchcontent(String name, String keyword, String category, String year) throws IOException, ParseException, Exception { 
+    public ArrayList<String> searchcontent(String name, String keyword, String category, String year) throws IOException, ParseException, Exception { 
 
         Directory dir = FSDirectory.open(new File(indexDir).toPath()); 
         IndexReader reader = DirectoryReader.open(dir); 
@@ -42,7 +40,7 @@ public class SearchDoc {
         
         System.err.println("Found "+ hits.totalHits + " document(s) ( in " + (end - start) + " milliseconds)  that mached query '" + name+ "':" ); 
         
-        ArrayList listA = new ArrayList();
+        ArrayList<String> listA = new ArrayList<String>();
        
         for(ScoreDoc scoreDoc : hits.scoreDocs){ 
         	Document doc = is.doc(scoreDoc.doc); 
@@ -57,8 +55,29 @@ public class SearchDoc {
         
     } 
 
+    public boolean isDuplicated(String path) throws IOException, ParseException, Exception { 
+
+    	boolean isDuplicated;
+        Directory dir = FSDirectory.open(new File(indexDir).toPath()); 
+        IndexReader reader = DirectoryReader.open(dir); 
+        IndexSearcher is = new IndexSearcher(reader); 
+        Query query = new TermQuery(new Term("fullpath", path));
+        TopDocs hits = is.search(query, 1); 
+      
+        if(hits.totalHits != 0)
+        	isDuplicated = true;
+        else
+        	isDuplicated = false;
+        
+        
+        reader.close(); 
+        
+        return isDuplicated;
+        
+        
+    } 
     
-    public ArrayList booleancontent(String name, String keyword, String category, String year) throws IOException, ParseException, Exception { 
+    public ArrayList<String> booleancontent(String name, String keyword, String category, String year) throws IOException, ParseException, Exception { 
 
         Directory dir = FSDirectory.open(new File(indexDir).toPath()); 
         IndexReader reader = DirectoryReader.open(dir); 
@@ -112,7 +131,7 @@ public class SearchDoc {
         
         System.err.println("Found "+ hits.totalHits + " document(s) ( in " + (end - start) + " milliseconds)  that mached query '" + name+ "':" ); 
         
-        ArrayList listA = new ArrayList();
+        ArrayList<String> listA = new ArrayList<String>();
        
         for(ScoreDoc scoreDoc : hits.scoreDocs){ 
         	Document doc = is.doc(scoreDoc.doc); 

@@ -37,7 +37,7 @@ public class DeleteController implements Initializable {
 		 
 		 FileChooser fileChooser = new FileChooser();
 	     fileChooser.setTitle("파일을 선택하세요");
-	     fileChooser.setInitialDirectory(new File("\\"));
+	     fileChooser.setInitialDirectory(new File(".\\"));
 	     fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Documents", "*.pdf", "*.txt", "*.hwp", "*.doc", "*.docx", "*.xml", "*.html", "*.htm", "*.xls", "*.xlsx", "*.ppt", "*.pptx"));
 	     File selectedFile = fileChooser.showOpenDialog(null);
 	     
@@ -62,7 +62,7 @@ public class DeleteController implements Initializable {
     			subStage.close();
     		}
     		else
-    			messageDialog("파일이 없습니다.");
+    			messageDialog("삭제할 파일은 등록되지 않은 파일입니다.");
     		}
     	catch (Exception e1) {
 			

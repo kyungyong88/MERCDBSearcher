@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-10">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
@@ -11,24 +11,24 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="E:/Kyungyong/Java/MERCDB/lib/arirang.lucene-analyzer-7.2.1.1.jar"/>
-	<classpathentry kind="lib" path="E:/Kyungyong/Java/MERCDB/lib/arirang-morph-1.1.4.jar"/>
-	<classpathentry kind="lib" path="E:/Kyungyong/Java/MERCDB/lib/dom4j-1.6.1.jar"/>
-	<classpathentry kind="lib" path="E:/Kyungyong/Java/MERCDB/lib/lucene-analyzers-common-7.4.0.jar"/>
-	<classpathentry kind="lib" path="E:/Kyungyong/Java/MERCDB/lib/lucene-codecs-7.4.0.jar"/>
-	<classpathentry kind="lib" path="E:/Kyungyong/Java/MERCDB/lib/lucene-core-7.4.0.jar"/>
-	<classpathentry kind="lib" path="E:/Kyungyong/Java/MERCDB/lib/lucene-queries-7.4.0.jar"/>
-	<classpathentry kind="lib" path="E:/Kyungyong/Java/MERCDB/lib/lucene-queryparser-7.4.0.jar"/>
-	<classpathentry kind="lib" path="E:/Kyungyong/Java/MERCDB/lib/lucene-sandbox-7.4.0.jar"/>
-	<classpathentry kind="lib" path="E:/Kyungyong/Java/MERCDB/lib/lucene-test-framework-7.4.0.jar"/>
-	<classpathentry kind="lib" path="E:/Kyungyong/Java/MERCDB/lib/pdfbox-app-1.8.1.jar"/>
-	<classpathentry kind="lib" path="E:/Kyungyong/Java/MERCDB/lib/poi-3.9-20121203..jar"/>
-	<classpathentry kind="lib" path="E:/Kyungyong/Java/MERCDB/lib/poi-examples-3.9-20121203.jar"/>
-	<classpathentry kind="lib" path="E:/Kyungyong/Java/MERCDB/lib/poi-ooxml-3.9-20121203.jar"/>
-	<classpathentry kind="lib" path="E:/Kyungyong/Java/MERCDB/lib/poi-ooxml-schemas-3.9-20121203.jar"/>
-	<classpathentry kind="lib" path="E:/Kyungyong/Java/MERCDB/lib/poi-scratchpad-3.9-20121203.jar"/>
-	<classpathentry kind="lib" path="E:/Kyungyong/Java/MERCDB/lib/rcc.h2tlib-1.0.1.jar"/>
-	<classpathentry kind="lib" path="E:/Kyungyong/Java/MERCDB/lib/sqlite-jdbc-3.23.1.jar"/>
-	<classpathentry kind="lib" path="E:/Kyungyong/Java/MERCDB/lib/xmlbeans-2.3.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/user/eclipse-workspace/MERCDBSearcher/lib/arirang.lucene-analyzer-7.2.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/user/eclipse-workspace/MERCDBSearcher/lib/arirang-morph-1.1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/user/eclipse-workspace/MERCDBSearcher/lib/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/user/eclipse-workspace/MERCDBSearcher/lib/lucene-analyzers-common-7.4.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/user/eclipse-workspace/MERCDBSearcher/lib/lucene-codecs-7.4.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/user/eclipse-workspace/MERCDBSearcher/lib/lucene-core-7.4.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/user/eclipse-workspace/MERCDBSearcher/lib/lucene-queries-7.4.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/user/eclipse-workspace/MERCDBSearcher/lib/lucene-queryparser-7.4.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/user/eclipse-workspace/MERCDBSearcher/lib/lucene-sandbox-7.4.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/user/eclipse-workspace/MERCDBSearcher/lib/lucene-test-framework-7.4.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/user/eclipse-workspace/MERCDBSearcher/lib/pdfbox-app-1.8.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/user/eclipse-workspace/MERCDBSearcher/lib/poi-3.9-20121203..jar"/>
+	<classpathentry kind="lib" path="C:/Users/user/eclipse-workspace/MERCDBSearcher/lib/poi-examples-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="C:/Users/user/eclipse-workspace/MERCDBSearcher/lib/poi-ooxml-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="C:/Users/user/eclipse-workspace/MERCDBSearcher/lib/poi-ooxml-schemas-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="C:/Users/user/eclipse-workspace/MERCDBSearcher/lib/poi-scratchpad-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="C:/Users/user/eclipse-workspace/MERCDBSearcher/lib/rcc.h2tlib-1.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/user/eclipse-workspace/MERCDBSearcher/lib/sqlite-jdbc-3.23.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/user/eclipse-workspace/MERCDBSearcher/lib/xmlbeans-2.3.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
