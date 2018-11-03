@@ -26,7 +26,7 @@ public class SearchDoc {
 
 	 private static String indexDir = "./indexs";
 
-
+/*
     public ArrayList<String> searchcontent(String name, String keyword, String category, String year) throws IOException, ParseException, Exception { 
 
         Directory dir = FSDirectory.open(new File(indexDir).toPath()); 
@@ -53,29 +53,7 @@ public class SearchDoc {
         
         return listA;
         
-    } 
-
-    public boolean isDuplicated(String path) throws IOException, ParseException, Exception { 
-
-    	boolean isDuplicated;
-        Directory dir = FSDirectory.open(new File(indexDir).toPath()); 
-        IndexReader reader = DirectoryReader.open(dir); 
-        IndexSearcher is = new IndexSearcher(reader); 
-        Query query = new TermQuery(new Term("fullpath", path));
-        TopDocs hits = is.search(query, 1); 
-      
-        if(hits.totalHits != 0)
-        	isDuplicated = true;
-        else
-        	isDuplicated = false;
-        
-        
-        reader.close(); 
-        
-        return isDuplicated;
-        
-        
-    } 
+    } */
     
     public ArrayList<String> booleancontent(String name, String keyword, String category, String year) throws IOException, ParseException, Exception { 
 
@@ -146,4 +124,29 @@ public class SearchDoc {
         
     } 
     
+   public boolean isEmptyDirectory() {
+	   File file = new File(indexDir);
+        if (!file.exists()) {
+        	file.mkdir();
+        }
+		
+	   if(file.list().length>0){
+		   return false;
+		   }
+	   else
+		   return true;
+	}
+   
+
+   public boolean isDuplicated(String fullpath) {
+	   File file = new File(fullpath);
+	   
+	   if(file.exists()){
+		   return true;
+		   }
+	   else {
+		   return false;
+	   }
+	}
+   
 }

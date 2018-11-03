@@ -80,6 +80,12 @@ SearchDoc searchdoc;
     			searchdoc = new SearchDoc();
     			
     			//button_adder(searchdoc.searchcontent(name, keyword, category, year));
+    			if(searchdoc.isEmptyDirectory())
+    			{
+    				messageDialog("등록된 파일이 없습니다.");
+    			}
+    			else
+    			{
     			button_adder(searchdoc.booleancontent(name, keyword, category, year));
     			
     			search_field.setText("");
@@ -87,6 +93,7 @@ SearchDoc searchdoc;
     			initSpinner();	
     		    category_combo.getSelectionModel().clearSelection();
     		    category_combo.setButtonCell(new PromptButtonCell<>("카테고리"));
+    			}
     		}
     	
 			} 
@@ -118,20 +125,27 @@ SearchDoc searchdoc;
  
 	private void button_adder(ArrayList <String> ListA) {
 		
-		data = FXCollections.observableArrayList();
-		for (Object object : ListA) {
-			String element = (String) object;
-		    data.add(element);
-		    }
-		
-		 items_listview.setItems(data);
+		if(ListA.isEmpty())
+		{
+			messageDialog("검색된 파일이 없습니다.");
+		}
+		else {
+			data = FXCollections.observableArrayList();
+			for (Object object : ListA) {
+				String element = (String) object;
+			    data.add(element);
+			    }
+			
+			 items_listview.setItems(data);
 
-		 items_listview.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
-	        @Override
-	        public ListCell<String> call(ListView<String> list) {
-	            return new AttachmentListCell();
-	        }
-	    });
+			 items_listview.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+		        @Override
+		        public ListCell<String> call(ListView<String> list) {
+		            return new AttachmentListCell();
+		        }
+		    });
+		}
+
 		 
 		}
 	

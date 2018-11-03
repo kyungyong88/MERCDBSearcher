@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.merc.core.DeleteDoc;
+import com.merc.core.SearchDoc;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,6 +21,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 public class DeleteController implements Initializable {
 	@FXML private Label title_label;
 	String fullpath;
+	SearchDoc searchdoc;
 	DeleteDoc deletedoc;
 	private Stage subStage;
 	
@@ -53,17 +55,24 @@ public class DeleteController implements Initializable {
 	 
 	 public void handleFileDelete(ActionEvent e) throws Exception {
      	try {
-     		deletedoc = new DeleteDoc();
-    		if(deletedoc.deleteDocument(fullpath))
-    		{
-    			File file = new File(fullpath);
-    			file.delete();
-    			messageDialog("삭제되었습니다.");
-    			subStage.close();
-    		}
-    		else
-    			messageDialog("삭제할 파일은 등록되지 않은 파일입니다.");
-    		}
+     		searchdoc = new SearchDoc();
+     		if(searchdoc.isEmptyDirectory())
+     		{
+     			messageDialog("등록된 파일이 없습니다.삭제할 파일이 없습니다.");
+     		}
+     		else {
+	     		deletedoc = new DeleteDoc();
+	    		if(deletedoc.deleteDocument(fullpath))
+	    		{
+	    			File file = new File(fullpath);
+	    			file.delete();
+	    			messageDialog("삭제되었습니다.");
+	    			subStage.close();
+	    		}
+	    		else
+	    			messageDialog("삭제할 파일은 등록되지 않은 파일입니다.");
+	    		}
+	     	}
     	catch (Exception e1) {
 			
 			e1.printStackTrace();

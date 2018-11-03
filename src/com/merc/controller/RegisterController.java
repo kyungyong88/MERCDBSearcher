@@ -90,16 +90,28 @@ public class RegisterController implements Initializable {
 				}
 		
 			SearchDoc searchdoc = new SearchDoc();
-			if(searchdoc.isDuplicated(new_Fullpath))
+
+            if(searchdoc.isEmptyDirectory())
 			{
 		        Files.copy(new File(old_fullpath).toPath(), new File(new_Fullpath).toPath(), StandardCopyOption.COPY_ATTRIBUTES);
 		        new CreateDoc(keyword, category, year, new_Fullpath);
 		        messageDialog("등록되었습니다.");
-		        subStage.close();
+		        subStage.close(); 
 			}
 			else
 			{
-		        messageDialog("중복된 파일이 있습니다.");
+            	
+				if(searchdoc.isDuplicated(new_Fullpath))
+				{
+					messageDialog("중복된 파일이 있습니다.");
+				}
+				else
+				{
+			        Files.copy(new File(old_fullpath).toPath(), new File(new_Fullpath).toPath(), StandardCopyOption.COPY_ATTRIBUTES);
+			        new CreateDoc(keyword, category, year, new_Fullpath);
+			        messageDialog("등록되었습니다.");
+			        subStage.close(); 
+				}
 			}
 
     	}
