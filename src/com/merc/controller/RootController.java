@@ -33,7 +33,7 @@ public class RootController implements Initializable {
 @FXML TextField search_field;
 @FXML TextField keyword_field;
 @FXML private ComboBox<String> category_combo;
-@FXML private Spinner<Integer> year_spinner;
+@FXML private Spinner<String> year_spinner;
 @FXML private ListView<String> items_listview;
 
 
@@ -74,7 +74,7 @@ SearchDoc searchdoc;
     			if(category_combo.getValue() != null)
     				category = category_combo.getValue();
     			String year = "";
-    			if(year_spinner.getValue() != null)
+    			if(year_spinner.getValue() != "생산년도")
     				year = year_spinner.getValue().toString();
     			
     			searchdoc = new SearchDoc();
@@ -104,13 +104,26 @@ SearchDoc searchdoc;
  
  
  private void initSpinner() {
+	 year_spinner.setEditable(true);
+     SpinnerValueFactory<String> valueFactory = new SpinnerValueFactory.ListSpinnerValueFactory<String>(years());
+     year_spinner.setValueFactory(valueFactory);
+ }
+ 
+ private ObservableList<String> years(){
 	 
-     Calendar now = Calendar.getInstance();   
+	 ObservableList<String> temp = FXCollections.observableArrayList();
+	 
+	 Calendar now = Calendar.getInstance();   
      int current_year = now.get(Calendar.YEAR);  
      
-     year_spinner.setEditable(true);
-     SpinnerValueFactory.IntegerSpinnerValueFactory valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1990, current_year, current_year, 1);
-     year_spinner.setValueFactory(valueFactory);
+     temp.add("생산년도");
+     
+     for(int i = 1990; i<=current_year; i++) {
+    	 temp.add(Integer.toString(i));
+     }
+     
+     return temp;
+	 
  }
  
  private void messageDialog(String message) {
@@ -129,22 +142,21 @@ SearchDoc searchdoc;
 		{
 			messageDialog("검색된 파일이 없습니다.");
 		}
-		else {
-			data = FXCollections.observableArrayList();
-			for (Object object : ListA) {
-				String element = (String) object;
-			    data.add(element);
-			    }
-			
-			 items_listview.setItems(data);
+		
+		data = FXCollections.observableArrayList();
+		for (Object object : ListA) {
+			String element = (String) object;
+		    data.add(element);
+		    }
+		
+		 items_listview.setItems(data);
 
-			 items_listview.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
-		        @Override
-		        public ListCell<String> call(ListView<String> list) {
-		            return new AttachmentListCell();
-		        }
-		    });
-		}
+		 items_listview.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+	        @Override
+	        public ListCell<String> call(ListView<String> list) {
+	            return new AttachmentListCell();
+	        }
+	    });
 
 		 
 		}

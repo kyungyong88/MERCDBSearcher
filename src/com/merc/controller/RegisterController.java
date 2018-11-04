@@ -12,6 +12,8 @@ import com.merc.core.CreateDoc;
 import com.merc.core.SearchDoc;
 import com.merc.ui.cell.PromptButtonCell;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -30,7 +32,7 @@ public class RegisterController implements Initializable {
 	@FXML private TextField title_field;
 	@FXML private TextField keyword_field;
 	@FXML private ComboBox<String> category_combo;
-	@FXML private Spinner<Integer> year_spinner;
+	@FXML private Spinner<String> year_spinner;
 	String old_fullpath;
 	private Stage subStage;
 
@@ -75,12 +77,12 @@ public class RegisterController implements Initializable {
  public void handleFileRegister(ActionEvent e) throws Exception {
  	try {
 		
-		if(title_field.getText() != null && year_spinner.getValue() != null && category_combo.getValue() != null){
+		if(title_field.getText() != null && year_spinner.getValue() != "생산년도" && category_combo.getValue() != null){
 			
 			String name = title_field.getText();
 			String keyword = StringReplace(keyword_field.getText());
 			String category = category_combo.getValue();
-			int year = year_spinner.getValue();
+			int year = Integer.parseInt(year_spinner.getValue());
 			String path = ".\\MERCDocFiles\\" + category + "\\" + year;
 			String new_Fullpath = ".\\MERCDocFiles\\" + category + "\\" + year  +"\\" + name;
 			File file = new File(path);
@@ -128,14 +130,26 @@ public class RegisterController implements Initializable {
  }
  
  private void initSpinner() {
+     year_spinner.setEditable(true);
+     SpinnerValueFactory<String> valueFactory = new SpinnerValueFactory.ListSpinnerValueFactory<String>(years());
+     year_spinner.setValueFactory(valueFactory);
+ }
+ 
+ private ObservableList<String> years(){
 	 
-     Calendar now = Calendar.getInstance();   
+	 ObservableList<String> temp = FXCollections.observableArrayList();
+	 
+	 Calendar now = Calendar.getInstance();   
      int current_year = now.get(Calendar.YEAR);  
      
-     year_spinner.setEditable(true);
-     SpinnerValueFactory.IntegerSpinnerValueFactory valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1990, current_year, current_year, 1);
-     year_spinner.setValueFactory(valueFactory);
+     temp.add("생산년도");
      
+     for(int i = 1990; i<=current_year; i++) {
+    	 temp.add(Integer.toString(i));
+     }
+     
+     return temp;
+	 
  }
  
  
