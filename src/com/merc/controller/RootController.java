@@ -64,7 +64,22 @@ SearchDoc searchdoc;
  public void handleSearch(ActionEvent e) throws Exception {
 		try {
     		if(search_field.getText().equals("")) {
-    			messageDialog("검색어를 입력하세요");
+    			String keyword = keyword_field.getText();
+    			String category = "";
+    			if(category_combo.getValue() != null)
+    				category = category_combo.getValue();
+    			String year = "";
+    			if(year_spinner.getValue() != "생산년도")
+    				year = year_spinner.getValue().toString();
+    			
+    			searchdoc = new SearchDoc();
+    			
+    			button_adder(searchdoc.findAllFiles(keyword, category, year));
+    			search_field.setText("");
+    			keyword_field.setText("");
+    			initSpinner();	
+    		    category_combo.getSelectionModel().clearSelection();
+    		    category_combo.setButtonCell(new PromptButtonCell<>("카테고리"));
     		}
     			
     		else {
@@ -79,7 +94,7 @@ SearchDoc searchdoc;
     			
     			searchdoc = new SearchDoc();
     			
-    			//button_adder(searchdoc.searchcontent(name, keyword, category, year));
+
     			if(searchdoc.isEmptyDirectory())
     			{
     				messageDialog("등록된 파일이 없습니다.");

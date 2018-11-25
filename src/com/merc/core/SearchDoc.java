@@ -15,6 +15,8 @@ import org.apache.lucene.search.BooleanClause.Occur;
 import org.apache.lucene.search.BooleanQuery;
 import org.apache.lucene.search.FuzzyQuery;
 import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.search.MatchAllDocsQuery;
+import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.search.TopDocs;
@@ -25,20 +27,53 @@ public class SearchDoc {
 
 	 private static String indexDir = "./indexs";
 
-/*
-    public ArrayList<String> searchcontent(String name, String keyword, String category, String year) throws IOException, ParseException, Exception { 
-
+	public  ArrayList<String> findAllFiles(String keyword, String category, String year) throws IOException {
         Directory dir = FSDirectory.open(new File(indexDir).toPath()); 
         IndexReader reader = DirectoryReader.open(dir); 
         IndexSearcher is = new IndexSearcher(reader); 
-        QueryParser parse = new QueryParser("contents", new KoreanAnalyzer()); 
-        Query query = parse.parse(name); 
-        long start = System.currentTimeMillis(); 
-        TopDocs hits = is.search(query, 10); 
-        long end = System.currentTimeMillis(); 
+
+        Query query = new MatchAllDocsQuery();
         
-        System.err.println("Found "+ hits.totalHits + " document(s) ( in " + (end - start) + " milliseconds)  that mached query '" + name+ "':" ); 
+        BooleanQuery finalQuery;
         
+        if(category != "" && year != "")
+        {
+        finalQuery = new BooleanQuery.Builder()
+        		.add(new TermQuery(new Term("category", category)), Occur.MUST)
+        	    .add(new TermQuery(new Term("year", year)), Occur.MUST)
+        	    .add(new FuzzyQuery(new Term("keyword", keyword), 0), Occur.SHOULD)
+        	    .add(query, Occur.MUST)
+        	    .build();
+        }
+        else if(category != "" && year == "")
+        {
+        finalQuery = new BooleanQuery.Builder()
+        		.add(new TermQuery(new Term("category", category)), Occur.MUST)
+        	    .add(new FuzzyQuery(new Term("keyword", keyword), 0), Occur.SHOULD)
+        	    .add(query, Occur.MUST)
+        	    .build();
+        }
+        
+        else if(category == "" && year != "")
+        {
+        finalQuery = new BooleanQuery.Builder()
+        	    .add(new TermQuery(new Term("year", year)), Occur.MUST)
+        	    .add(new FuzzyQuery(new Term("keyword", keyword), 0), Occur.SHOULD)
+        	    .add(query, Occur.MUST)
+        	    .build();
+        }
+        
+        else
+        {
+        finalQuery = new BooleanQuery.Builder()
+        	    .add(new FuzzyQuery(new Term("keyword", keyword), 0), Occur.SHOULD)
+        	    .add(query, Occur.MUST)
+        	    .build();
+        }
+        
+        
+        TopDocs hits = is.search(finalQuery, 100000);
+  
         ArrayList<String> listA = new ArrayList<String>();
        
         for(ScoreDoc scoreDoc : hits.scoreDocs){ 
@@ -51,9 +86,9 @@ public class SearchDoc {
         reader.close(); 
         
         return listA;
-        
-    } */
-    
+	}
+	
+	
     public ArrayList<String> booleancontent(String name, String keyword, String category, String year) throws IOException, ParseException, Exception { 
 
         Directory dir = FSDirectory.open(new File(indexDir).toPath()); 

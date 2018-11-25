@@ -6,18 +6,19 @@
 <?import javafx.collections.FXCollections ?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="247.0" prefWidth="375.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.merc.controller.RegisterController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="277.0" prefWidth="375.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.merc.controller.RegisterController">
    <children>
-      <Button layoutX="31.0" layoutY="30.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="313.0" text="파일 선택" onAction="#handleFileSelect"/>
-      <Label layoutX="31.0" layoutY="76.0" text="제목" />
-      <TextField layoutX="90.0" layoutY="72.0" prefHeight="23.0" prefWidth="254.0" editable="false" fx:id="title_field"/>
-      <Label layoutX="31.0" layoutY="108.0" text="키워드" />
-      <TextField layoutX="90.0" layoutY="104.0" prefHeight="23.0" prefWidth="254.0" fx:id="keyword_field"/>
-      <Label layoutX="31.0" layoutY="139.0" text="생산년도" />
- 	  <Spinner fx:id="year_spinner" layoutX="90.0" layoutY="135.0" prefHeight="23.0" prefWidth="254.0" />
+	  <Button layoutX="31.0" layoutY="30.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="313.0" text="폴더 선택" onAction="#handleDirectorySelect"/>
+      <Button layoutX="31.0" layoutY="60.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="313.0" text="파일 선택" onAction="#handleFileSelect"/>
+      <Label layoutX="31.0" layoutY="106.0" text="제목" />
+      <TextField layoutX="90.0" layoutY="102.0" prefHeight="23.0" prefWidth="254.0" editable="false" fx:id="title_field"/>
+      <Label layoutX="31.0" layoutY="138.0" text="키워드" />
+      <TextField layoutX="90.0" layoutY="134.0" prefHeight="23.0" prefWidth="254.0" fx:id="keyword_field"/>
+      <Label layoutX="31.0" layoutY="169.0" text="생산년도" />
+ 	  <Spinner fx:id="year_spinner" layoutX="90.0" layoutY="165.0" prefHeight="23.0" prefWidth="254.0" />
       
-      <Label layoutX="31.0" layoutY="170.0" text="카테고리" />
-      <ComboBox fx:id="category_combo" layoutX="90.0" layoutY="166.0" prefHeight="23.0" prefWidth="254.0" promptText="카테고리" >
+      <Label layoutX="31.0" layoutY="200.0" text="카테고리" />
+      <ComboBox fx:id="category_combo" layoutX="90.0" layoutY="196.0" prefHeight="23.0" prefWidth="254.0" promptText="카테고리" >
    	  	<items>
     		<FXCollections fx:factory="observableArrayList">
      			<String fx:value="환경정책"/>
@@ -28,7 +29,7 @@
     		</FXCollections>
    		</items>
    	  </ComboBox>
-      <Button layoutX="230.0" layoutY="198.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="114.0" text="등록" onAction="#handleFileRegister" />
-      <Button layoutX="33.0" layoutY="198.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="114.0" text="초기화" onAction="#handleInitialize"/>
+      <Button layoutX="230.0" layoutY="228.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="114.0" text="등록" onAction="#handleFileRegister" />
+      <Button layoutX="33.0" layoutY="228.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="114.0" text="초기화" onAction="#handleInitialize"/>
    </children>
 </Pane>
