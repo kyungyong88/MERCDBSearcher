@@ -17,7 +17,7 @@ public class RegisterFile {
 			
 
 	 public RegisterFile() throws Exception {
-	    FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/register.fxml"));
+	    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/register.fxml"));
 	    Parent root = loader.load();
 		Scene scene = new Scene(root);
 		Stage subStage = new Stage();
