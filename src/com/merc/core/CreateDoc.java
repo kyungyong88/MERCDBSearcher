@@ -42,6 +42,7 @@ public class CreateDoc {
     	
         try {
             createIndexWriter(); // ÀÎµ¦½º °´Ã¼ ¿ÀÇÂ
+            
             checkFileValidity(new File(fullpath)); // ¹®¼­ ÆÄ½Ì ¹× ÀÎµ¦½º¿¡ ÀûÀç
             closeIndexWriter(); // ÀÎµ¦½º °´Ã¼ ´ÝÀ½
         } catch (Exception e) {
@@ -116,16 +117,16 @@ public class CreateDoc {
             doc.add(new TextField("keyword", keyword, Field.Store.YES));
             doc.add(new TextField("category", category, Field.Store.YES));
             doc.add(new TextField("year", Integer.toString(year), Field.Store.YES));
-            doc.add(new StringField("fullpath", file.getCanonicalPath(), Field.Store.YES)); 
+            doc.add(new StringField("fullpath", file.getPath(), Field.Store.YES)); 
              
             if (doc != null) {
                 writer.addDocument(doc);
             }
             
-            System.out.println("Indexed Doc : " + file.getAbsolutePath());
+            System.out.println("Indexed Doc : " + file.getPath());
         }
         catch (Exception e) {
-            System.out.println("error in indexing" + (file.getAbsolutePath()));
+            System.out.println("error in indexing" + (file.getPath()));
         }
     }
  
@@ -155,7 +156,7 @@ public class CreateDoc {
         
         doc.add(new TextField("contents", fileContent, Field.Store.YES));
         doc.add(new TextField("filename", removeExtention(file.getName()), Field.Store.YES));
-        doc.add(new StringField("fullpath", file.getCanonicalPath(), Field.Store.YES)); 
+        doc.add(new StringField("fullpath", file.getPath(), Field.Store.YES)); 
         doc.add(new TextField("keyword", keyword, Field.Store.YES));
         doc.add(new TextField("category", category, Field.Store.YES));
         doc.add(new StringField("year", Integer.toString(year), Field.Store.YES));

@@ -131,7 +131,6 @@ public class RegisterController implements Initializable {
 				String path = ".\\MERCDocFiles\\" + category + "\\" + year;
 				String new_Fullpath = ".\\MERCDocFiles\\" + category + "\\" + year  +"\\" + name;
 				File file = new File(path);
-				
 				if (!file.exists()) {
 					file.mkdirs();
 					}

@@ -61,17 +61,29 @@ public class DeleteController implements Initializable {
      			messageDialog("등록된 파일이 없습니다.삭제할 파일이 없습니다.");
      		}
      		else {
-	     		deletedoc = new DeleteDoc();
-	    		if(deletedoc.deleteDocument(fullpath))
-	    		{
-	    			File file = new File(fullpath);
-	    			file.delete();
-	    			messageDialog("삭제되었습니다.");
-	    			subStage.close();
-	    		}
+     			if(fullpath.contains("MERCDocFiles")){
+     				
+     				int index;
+     				
+     				while(fullpath.contains("MERCDocFiles"))
+     				{
+     					index= fullpath.indexOf("\\");
+     					fullpath = fullpath.substring(index+1);
+     				}
+     				fullpath = ".\\MERCDocFiles\\"+fullpath;
+     				
+		     		deletedoc = new DeleteDoc();		     		
+		    		if(deletedoc.deleteDocument(fullpath)){
+		    			File file = new File(fullpath);
+		    			file.delete();
+		    			messageDialog("삭제되었습니다.");
+		    			subStage.close();
+		    			}
+		    		}
 	    		else
 	    			messageDialog("삭제할 파일은 등록되지 않은 파일입니다.");
-	    		}
+		    		
+     			}
 	     	}
     	catch (Exception e1) {
 			

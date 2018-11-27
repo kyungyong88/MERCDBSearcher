@@ -29,11 +29,11 @@
             <ComboBox fx:id="category_combo" layoutX="258.0" layoutY="36.0" prefHeight="23.0" prefWidth="108.0" promptText="카테고리" >
 		   	  	<items>
 		    		<FXCollections fx:factory="observableArrayList">
-		     			<String fx:value="환경정책"/>
-		     			<String fx:value="토양"/>
-		     			<String fx:value="대기"/>
-		     			<String fx:value="수질"/>
-		     			<String fx:value="기타"/>
+     			<String fx:value="환경정책/대기"/>
+     			<String fx:value="토양/수질"/>
+     			<String fx:value="학술논문"/>
+     			<String fx:value="학술세미나"/>
+     			<String fx:value="기타"/>
 		    		</FXCollections>
 		   		</items>
    	  		</ComboBox>
