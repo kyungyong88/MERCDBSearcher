@@ -96,78 +96,75 @@ public class RegisterController implements Initializable {
  
  public void handleFileRegister(ActionEvent e) throws Exception {
 	 
-     //Directory?
-     if (Files.isDirectory(Paths.get(old_fullpath))) 
-     {
-         //Iterate directory
-         Files.walkFileTree(Paths.get(old_fullpath), new SimpleFileVisitor<Path>() 
-         {
-             @Override
-             public FileVisitResult visitFile(Path fullpath, BasicFileAttributes attrs) throws IOException 
-             {
-                 //Index this file
-				 registerfile(fullpath);
-                 return FileVisitResult.CONTINUE;
-             }
-         });
-     } 
-     else
-     {
-         //Index this file
-    	 registerfile();
-     }
+	 if(title_field.getText() != null && year_spinner.getValue() != "생산년도" && category_combo.getValue() != null){
+	     if (Files.isDirectory(Paths.get(old_fullpath))) 
+	     {
+	         //Iterate directory
+	         Files.walkFileTree(Paths.get(old_fullpath), new SimpleFileVisitor<Path>() 
+	         {
+	             @Override
+	             public FileVisitResult visitFile(Path fullpath, BasicFileAttributes attrs) throws IOException 
+	             {
+	                 //Index this file
+					 registerfile(fullpath);
+	                 return FileVisitResult.CONTINUE;
+	             }
+	         });
+	         subStage.close();
+	         
+	     } 
+	     else
+	     {
+	         //Index this file
+	    	 registerfile();
+	     }
+	 }
+	 
+	else {
+        messageDialog("파일, 년도 또는 카테고리가 선택되지 않았습니다.");
+
+	}
  }
  
 
  public void registerfile(Path fullpath) {
 	 	try {
 			
-			if(fullpath.getFileName() != null && year_spinner.getValue() != "생산년도" && category_combo.getValue() != null){
 				
-				String name = fullpath.getFileName().toString();
-				String keyword = StringReplace(keyword_field.getText());
-				String category = category_combo.getValue();
-				int year = Integer.parseInt(year_spinner.getValue());
-				String path = ".\\MERCDocFiles\\" + category + "\\" + year;
-				String new_Fullpath = ".\\MERCDocFiles\\" + category + "\\" + year  +"\\" + name;
-				File file = new File(path);
-				if (!file.exists()) {
-					file.mkdirs();
-					}
-			
-				SearchDoc searchdoc = new SearchDoc();
+			String name = fullpath.getFileName().toString();
+			String keyword = StringReplace(keyword_field.getText());
+			String category = category_combo.getValue();
+			int year = Integer.parseInt(year_spinner.getValue());
+			String path = ".\\MERCDocFiles\\" + category + "\\" + year;
+			String new_Fullpath = ".\\MERCDocFiles\\" + category + "\\" + year  +"\\" + name;
+			File file = new File(path);
+			if (!file.exists()) {
+				file.mkdirs();
+				}
+		
+			SearchDoc searchdoc = new SearchDoc();
 
-	            if(searchdoc.isEmptyDirectory())
+            if(searchdoc.isEmptyDirectory())
+			{
+		        Files.copy(fullpath, new File(new_Fullpath).toPath(), StandardCopyOption.COPY_ATTRIBUTES);
+		        new CreateDoc(keyword, category, year, new_Fullpath);
+		        messageDialog("파일 " + name.substring(0, name.lastIndexOf('.')) +"이(가) 등록되었습니다.");
+			}
+			else
+			{
+            	
+				if(searchdoc.isDuplicated(new_Fullpath))
 				{
-			        Files.copy(fullpath, new File(new_Fullpath).toPath(), StandardCopyOption.COPY_ATTRIBUTES);
-			        new CreateDoc(keyword, category, year, new_Fullpath);
-			        messageDialog("등록되었습니다.");
-			        subStage.close(); 
+					messageDialog(name.substring(0, name.lastIndexOf('.')) + "은(는) 중복된 파일입니다.");
 				}
 				else
 				{
-	            	
-					if(searchdoc.isDuplicated(new_Fullpath))
-					{
-						messageDialog("중복된 파일이 있습니다.");
-					}
-					else
-					{
-				        Files.copy(fullpath, new File(new_Fullpath).toPath(), StandardCopyOption.COPY_ATTRIBUTES);
-				        new CreateDoc(keyword, category, year, new_Fullpath);
-				        messageDialog("등록되었습니다.");
-				        subStage.close(); 
-					}
+			        Files.copy(fullpath, new File(new_Fullpath).toPath(), StandardCopyOption.COPY_ATTRIBUTES);
+			        new CreateDoc(keyword, category, year, new_Fullpath);
+			        messageDialog("파일 " + name.substring(0, name.lastIndexOf('.')) +"이(가) 등록되었습니다.");
 				}
-
-	    	}
-			
-			else {
-		        messageDialog("파일, 년도 또는 카테고리가 선택되지 않았습니다.");
-
 			}
-			
-			
+
 			} 
 		catch (Exception e2) {
 		}
@@ -198,22 +195,20 @@ public class RegisterController implements Initializable {
 				{
 			        Files.copy(new File(old_fullpath).toPath(), new File(new_Fullpath).toPath(), StandardCopyOption.COPY_ATTRIBUTES);
 			        new CreateDoc(keyword, category, year, new_Fullpath);
-			        messageDialog("등록되었습니다.");
-			        subStage.close(); 
+			        messageDialog("파일 " + name.substring(0, name.lastIndexOf('.')) +"이(가) 등록되었습니다.");
 				}
 				else
 				{
 	            	
 					if(searchdoc.isDuplicated(new_Fullpath))
 					{
-						messageDialog("중복된 파일이 있습니다.");
+						messageDialog(name.substring(0, name.lastIndexOf('.')) + "은(는) 중복된 파일입니다.");
 					}
 					else
 					{
 				        Files.copy(new File(old_fullpath).toPath(), new File(new_Fullpath).toPath(), StandardCopyOption.COPY_ATTRIBUTES);
 				        new CreateDoc(keyword, category, year, new_Fullpath);
-				        messageDialog("등록되었습니다.");
-				        subStage.close(); 
+				        messageDialog("파일 " + name.substring(0, name.lastIndexOf('.')) +"이(가) 등록되었습니다.");
 					}
 				}
 
